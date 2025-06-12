@@ -1,6 +1,15 @@
+import subprocess
+
+
 class ReviewerAgent:
-    """Validates generated code."""
+    """Validates generated Python code using pyflakes."""
 
     def review(self, file_path: str) -> bool:
-        """Return True if file seems valid (placeholder)."""
-        return True
+        try:
+            result = subprocess.run(
+                ["pyflakes", str(file_path)], capture_output=True, text=True, check=False
+            )
+            return result.returncode == 0
+        except FileNotFoundError:
+            # pyflakes not installed; assume valid
+            return True

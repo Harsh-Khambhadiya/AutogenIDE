@@ -1,15 +1,19 @@
-# Offline AI IDE Skeleton
+# Offline AI IDE
 
-This repository provides a minimal skeleton implementing some core features of the Offline AI IDE described in the System Requirement Document (SRD).
+This project provides an offline assistant that behaves similarly to ChatGPT but is tailored for local development tasks. It is inspired by the System Requirement Document (SRD) summarised in this repository.
 
-## Features
+## Implemented Components
 
-- **PlannerAgent** generates a simple plan for tasks.
-- **CoderAgent** writes files to disk.
-- **ReviewerAgent** returns a dummy review result.
-- **ScannerAgent** lists files in the project directory.
-- **LogAgent** records actions to `logs/actions.json`.
-- **Memory** stores session data in `memory.json`.
-- A basic CLI in `autogen_ide/ide.py` to run analysis or execute a task.
+- **PlannerAgent** – creates execution plans using a local model.
+- **CoderAgent** – writes, appends or deletes files on disk.
+- **ReviewerAgent** – validates Python code via `pyflakes` when available.
+- **ScannerAgent** – scans folders and analyses Python modules.
+- **WebReaderAgent** – fetches documentation from the internet (optional).
+- **ConversableAgent** – wraps a HuggingFace model for chat style replies.
+- **SupervisorAgent** – records phase history and supervises tasks.
+- **Memory** – persistent JSON store with per-phase history.
+- **LogAgent** – logs every action to `logs/actions.yaml`.
+- **Streamlit UI** – `python -m autogen_ide.ui` launches a simple 3-pane interface.
+- **CLI Tool** – `python -m autogen_ide <root> [command]` supports `analyze`, `run`, `chat`, and `reset`.
 
-This is only a starting point and does not provide a full implementation of the SRD.
+The implementation is intentionally lightweight so it can run fully offline with a locally available model. Heavy features from the SRD such as multi-model routing or GPU utilisation are left for future expansion.

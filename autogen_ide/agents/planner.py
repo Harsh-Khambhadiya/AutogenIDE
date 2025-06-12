@@ -1,6 +1,14 @@
+from __future__ import annotations
+
+from .conversable import ConversableAgent
+
+
 class PlannerAgent:
-    """Plans execution flow for tasks according to the SYSTEM REQUIREMENT DOCUMENT (SRD)."""
+    """Generates an execution plan using the ConversableAgent."""
+
+    def __init__(self, conversable: ConversableAgent | None = None) -> None:
+        self.conv = conversable or ConversableAgent()
 
     def plan(self, task: str) -> str:
-        """Return a basic plan description for the given task."""
-        return f"Plan for task: {task}"
+        prompt = f"Create a concise plan for the following task:\n{task}\nPlan:"
+        return self.conv.respond(prompt)
