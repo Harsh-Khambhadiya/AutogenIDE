@@ -19,6 +19,7 @@ with left:
     st.header("Project Files")
     files = ide.analyze()
     st.write("\n".join(files))
+    st.write(f"Current Phase: {ide.memory.current_phase()}")
 
 with center:
     st.header("Code Editor")
@@ -29,6 +30,9 @@ with center:
 
 with right:
     st.header("Chat")
+    history = ide.memory.chat_history()
+    for entry in history[-10:]:
+        st.write(f"**{entry['role']}**: {entry['message']}")
     prompt = st.text_input("Prompt", "")
     if st.button("Send") and prompt:
         response = ide.chat(prompt)

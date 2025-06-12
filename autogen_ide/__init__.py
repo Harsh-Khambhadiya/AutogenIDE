@@ -2,8 +2,11 @@
 
 __version__ = "0.1.0"
 
+from .agents.terminal import TerminalAgent
+
 __all__ = [
     "ide",
     "agents",
     "memory",
+    "TerminalAgent",
 ]

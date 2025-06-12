@@ -13,7 +13,10 @@ This project provides an offline assistant that behaves similarly to ChatGPT but
 - **SupervisorAgent** – records phase history and supervises tasks.
 - **Memory** – persistent JSON store with per-phase history.
 - **LogAgent** – logs every action to `logs/actions.yaml`.
-- **Streamlit UI** – `python -m autogen_ide.ui` launches a simple 3-pane interface.
-- **CLI Tool** – `python -m autogen_ide <root> [command]` supports `analyze`, `run`, `chat`, and `reset`.
+- **Streamlit UI** – `python -m autogen_ide.ui` launches a 3-pane interface with phase tracking and chat history.
+- **CLI Tool** – `python -m autogen_ide <root> [command]` supports `analyze`, `run`, `chat`, `shell`, and `reset`.
+- **TerminalAgent** – executes shell commands when allowed.
+- **Persistent Memory** – all chat and phase data survive restarts via JSON files.
+- **History Files** – each phase log is stored under `history/` for auditing.
 
 The implementation is intentionally lightweight so it can run fully offline with a locally available model. Heavy features from the SRD such as multi-model routing or GPU utilisation are left for future expansion.
